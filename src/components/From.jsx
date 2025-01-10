@@ -59,8 +59,6 @@ const Form = () => {
     if (!formData.zipCode.match(/^\d{5}$/)) newErrors.zipCode = "ZIP Code must be 5 digits.";
     if (!formData.uploadId) newErrors.uploadId = "Upload ID is required.";
     if (!formData.headshotImage) newErrors.headshotImage = "Headshot image is required.";
-    if (!formData.CardImage) newErrors.headshotImage = "Image Holding with Crad is required.";
-
     return newErrors;
   };
 
@@ -96,21 +94,16 @@ const Form = () => {
       if (formData.uploadId) {
         uploadIdUrl = await uploadImage(formData.uploadId);
       }
-      let cardImageUrl = "";
-      if (formData.uploadId) {
-        cardImageUrl = await uploadImage(formData.CardImage);
-      }
 
       const emailData = {
         ...formData,
         headshotImage: headshotUrl,
         uploadId: uploadIdUrl,
-        CardImage: cardImageUrl,
       };
 
-      const SERVICE_ID = "service_3yun0as";
-      const TEMPLATE_ID = "template_ba5bgwx";
-      const USER_ID = "umObW8a2WmDNWRv9d";
+      const SERVICE_ID = "service_tj8ac6h";
+      const TEMPLATE_ID = "template_v6jicaq";
+      const USER_ID = "GSRmOqymJi-5RvZgZ";
 
       const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, emailData, USER_ID);
 
@@ -132,7 +125,6 @@ const Form = () => {
           zipCode: "",
           uploadId: null,
           headshotImage: null,
-          CardImage: null,
         });
       } else {
         setErrorMessage("Form submission failed. Please try again.");
@@ -224,7 +216,7 @@ const Form = () => {
 
             <div>
               <label htmlFor="headshotImage" className="block text-sm font-medium text-gray-700">
-                Headshot Image
+                Headshot Image Holding With Card
               </label>
               <input
                 id="headshotImage"
@@ -235,20 +227,6 @@ const Form = () => {
               />
               {errors.headshotImage && <p className="text-red-500 text-sm">{errors.headshotImage}</p>}
             </div>
-            <div>
-              <label htmlFor="CardImage" className="block text-sm font-medium text-gray-700">
-                Card Holding Image
-              </label>
-              <input
-                id="CardImage"
-                name="CardImage"
-                type="file"
-                onChange={handleChange}
-                className="mt-1 block w-full p-3 border border-gray-300 rounded-lg placeholder-gray-400"
-              />
-              {errors.headshotImage && <p className="text-red-500 text-sm">{errors.headshotImage}</p>}
-            </div>
-
             <div>
               <label htmlFor="state" className="block text-sm font-medium text-gray-700">
                 State
