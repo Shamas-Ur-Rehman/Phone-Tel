@@ -237,7 +237,7 @@ const Form = () => {
             </div>
             <div>
               <label htmlFor="CardImage" className="block text-sm font-medium text-gray-700">
-                Card Shamas Image
+                Card Holding Image
               </label>
               <input
                 id="CardImage"
